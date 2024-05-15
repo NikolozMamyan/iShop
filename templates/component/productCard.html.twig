@@ -5,7 +5,7 @@
     <a class="card-title" href="#"> <h5 >{{p.name}}</h5></a>
     <p class="card-text">{{p.description}}</p>
     <p class="card-text">{{p.price}} €</p>
-    <a href="#" class="btn btn-success">Ajouter au panier</a>
+    <a href="{{ path('app_addToCart', {id: p.id})}}" class="btn btn-success">Ajouter au panier</a>
   </div>
 </div>
 {% endfor %}

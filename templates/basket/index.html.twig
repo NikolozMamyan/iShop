@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BasketController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Votre Panier</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Admin/Desktop/perso/MyApp/src/Controller/BasketController.php</code></li>
-        <li>Your template at <code>C:/Users/Admin/Desktop/perso/MyApp/templates/basket/index.html.twig</code></li>
-    </ul>
-</div>
+        {% if productsInBasket|length > 0 %}
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card">
+                        <div class="card-header p-3" style="background-color: #e3f2fd;">
+                            <h5 class="mb-0">Articles dans votre panier</h5>
+                        </div>
+                        <div class="card-body">
+                     {% for product in productsInBasket %}
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <img src="https://via.placeholder.com/300x200" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-8">
+            <h5 class="mb-2">{{ product.name }}</h5>
+            <p class="mb-2">{{ product.description }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="form-group mb-0">
+                    <label for="quantity-{{ loop.index }}">Quantité :</label>
+                    <input type="number" class="form-control form-control-sm" id="quantity-{{ loop.index }}" name="quantities[{{ product.id }}]" value="{{ product.quantity|default(1) }}" min="1">
+                </div>
+                <h4 class="mb-0">{{ (product.price * product.quantity|default(1)) }} €</h4>
+                <a href="{{ path('app_delete_basket', {'productId': product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+                            <div class="row">
+                                <div class="col-md-8 offset-md-4">
+                                    <h4>
+                                        {% set total = 0 %}
+                                        {% for product in productsInBasket %}
+                                            {% set total = total + product.price %}
+                                        {% endfor %}
+                                        Total: {{ total }} €
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Votre panier est vide.</p>
+        {% endif %}
+    </div>
 {% endblock %}
