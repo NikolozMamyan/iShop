@@ -24,6 +24,9 @@ class Basket
     #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'baskets')]
     private Collection $product;
 
+    #[ORM\Column]
+    private ?int $quantity = null;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -66,6 +69,18 @@ class Basket
     public function removeProduct(Product $product): static
     {
         $this->product->removeElement($product);
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): static
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

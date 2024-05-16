@@ -1,11 +1,17 @@
 {% for p in products %}
-<div class="card" style="width: 25rem;">
-  <img src="https://picsum.photos/100/?blur" class="card-img-top" alt="...">
+<div class="card mb-3" style="30 rem;">
+<div class="row g-0">
+<div class="col-md-4">
+  <img src="https://picsum.photos/200/100?blur" class="card-img-top" alt="...">
+  </div>
+  <div class="col-md-8">
   <div class="card-body">
     <a class="card-title" href="#"> <h5 >{{p.name}}</h5></a>
     <p class="card-text">{{p.description}}</p>
     <p class="card-text">{{p.price}} €</p>
     <a href="{{ path('app_addToCart', {id: p.id})}}" class="btn btn-success">Ajouter au panier</a>
+  </div>
+  </div>
   </div>
 </div>
 {% endfor %}

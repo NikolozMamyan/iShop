@@ -33,11 +33,13 @@ class HomeController extends AbstractController
         $basket = new Basket();
         $product = $productRepository->find($id);
     
-        $basket->addProduct($product);
+        $basket->addProduct($product)
+                ->setQuantity(1);
         $user->addProduct($basket);
     
         $entityManager->persist($basket);
         $entityManager->flush();
+        
                 return $this->redirectToRoute('app_home');
         return $this->render('home/addToCart.html.twig', [
         
