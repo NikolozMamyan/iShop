@@ -37,7 +37,9 @@
           <a class="nav-item me-5" href="{{ path('app_basket')}}">Panier</a>
         </li>
            {% else %}
-         <li><a class="dropdown-item mt-1 me-5" href="{{ path('app_login')}}">Identifiez-vous</a></li>
+           <div id ="connect_btn" type="button" class="btn btn-outline-dark">Connectez-vous
+           </div>
+         
          {% endif %}
      
    
@@ -46,3 +48,5 @@
     </div>
   </div>
 </nav>
+
+<div id="detailDiv" class="bg-success-subtle text-light"></div>

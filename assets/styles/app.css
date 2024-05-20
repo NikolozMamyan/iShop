@@ -12,6 +12,41 @@ h2 {
 	text-align: start;
 }
 
+#detailDiv {
+	display: none;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	right: 60px;
+	top:98px;
+	transform: translateY(-50%);
+	width: 300px;
+	z-index: 999;
+  }
+  
+  #detailDiv.detailWeather {
+	display: block;
+  }
+  
+  #detailDiv ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+  }
+  
+  #detailDiv li {
+	margin-bottom: 5px;
+  }
+  
+  #detailDiv a {
+	text-decoration: none;
+  }
+  
+  #detailDiv a:hover {
+	color: #666;
+  }
+
 /************/
 /*Cart Items*/
 /************/
